@@ -7,20 +7,40 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <main class="page">
+    <a class="skip-link" href="#konten">Lewati ke konten utama</a>
+    <header class="site-header">
+        <nav class="nav" aria-label="Navigasi utama">
+            <a class="brand" href="index.html">Dapur Mak Win</a>
+            <ul>
+                <li><a aria-current="page" href="index.html">Beranda</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+            </ul>
+       </nav>
+    </header>
+
+    <main id="konten" class="page">
             <section class="hero">
                 <p class="eyebrow">UMKM Pekalongan</p>
                 <h1>Dapur Mak Win</h1>
                 <p>Nasi kotak dan katering rumahan untuk acara kantor, arisan, dan hajatan.</p>
                 <button id="promoButton" type="button">Lihat promo hari ini</button>
+                <img src="assets/images/nasi-kotak.jpg" alt="Nasi kotak katering dengan nasi, sayur, dan lauk siap disajikan" />
             </section>
 
             <section aria-labelleby="produk-title">
                 <h2 id="produk-title">Menu Unggulan</h2>
-                <ul class="products">
-                    <li>Nasi Kotak Komplit - Rp20.000</li>
-                    <li>Paket Prasmanan (min.20 porsi) - Rp25.000/porsi</li>
-                </ul>
+                <div class="product-list">
+                    <article class="product-card">
+                        <h3>Nasi Kotak Komplit</h3>
+                        <p>Menu lengkap dengan lauk dan sayur, cocok untuk acara kantor.</p>
+                        <p class="price">Rp20.000</p>
+                    </article>
+                    <article class="product-card">
+                        <h3>Paket Prasmanan</h3>
+                        <p>Cocok untuk acara besar, minimal pemesanan 20 porsi.</p>
+                        <p class="price">Rp25.000/porsi</p>
+                    </article>
+                </div>
             </section>
             <section>
                 <h2>Jam Buka & Lokasi</h2>
@@ -31,6 +51,9 @@
                 <p><strong>Alamat:</strong>  Jl. Kyai Mahbub, Kec. Bojong, Kab. Pekalongan</p>
             </section>
         </main>
+        <footer class="site-footer">
+            <p>&copy; 2026 Dapur Mak Win. Data pada halaman ini bersifat dummy.</p>
+        </footer>
         <script src="js/script.js"></script>
     </body>
 </html>
