@@ -109,3 +109,26 @@ img {
   font-weight: 700;
   color: #6f3b1f;
 }
+
+figure {
+  margin: 0 0 24px;
+}
+figcaption {
+  margin-top: 8px;
+  color: #6b5b52;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+caption {
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-align: left;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #dccbbc;
+}
