@@ -37,6 +37,11 @@
                 </div>
 
                 <div class="field">
+                    <label for="telepon">Nomor WhatsApp <span class="opsional">(opsional)</span></label>
+                    <input id="telepon" name="telepon" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" />
+                </div>
+
+                <div class="field">
                     <label for="paket">Paket yang diminati</label>
                     <select id="paket" name="paket" required>
                         <option value="">Pilih paket</option>
@@ -51,6 +56,13 @@
                     <label><input type="radio" name="topik" value="produk" required /> Informasi produk</label>
                     <label><input type="radio" name="topik" value="pesanan" /> Status pesanan</label>
                     <label><input type="radio" name="topik" value="kerja-sama" /> Kerja sama</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Waktu terbaik untuk dihubungi</legend>
+                    <label><input type="radio" name="waktu" value="pagi" required /> Pagi</label>
+                    <label><input type="radio" name="waktu" value="siang" /> Siang</label>
+                    <label><input type="radio" name="waktu" value="sore" /> Sore</label>
                 </fieldset>
 
                 <div class="field">
