@@ -1,19 +1,30 @@
 :root {
-  --color-primary: #6f3b1f;
-  --color-primary-strong: #4b2715;
+  /* Warna berbasis fungsi (variasi tema) */
+  --color-primary: #8b5a2b;
+  --color-primary-strong: #5f3b1a;
+  --color-accent: #d97706;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
   --color-text: #2f2118;
   --color-muted: #6b5b52;
   --color-surface: #ffffff;
   --color-surface-soft: #fff8f0;
   --color-border: #dccbbc;
   --color-focus: #1d4ed8;
+
+  /* Spacing */
   --space-1: 0.5rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2rem;
+  --space-6: 2.5rem;
+
+  /* Radius & shadow */
   --radius-sm: 0.5rem;
   --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
   --shadow-card: 0 0.5rem 1.5rem rgb(47 33 24 / 0.1);
 }
 
@@ -300,4 +311,24 @@ section:has(h2) {
 
 .product-list {
   display: block;
+}
+
+/* Tugas mandiri – variasi tema */
+.alert-success {
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-surface);
+  background: var(--color-success);
+  border-radius: var(--radius-sm);
+}
+
+.alert-danger {
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-surface);
+  background: var(--color-danger);
+  border-radius: var(--radius-sm);
+}
+
+.hero {
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
 }
