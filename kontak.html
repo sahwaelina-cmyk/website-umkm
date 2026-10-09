@@ -26,43 +26,49 @@
             <p>Silakan kirim pertanyaan tentang menu, pesanan, atau kerja sama katering.</p>
 
             <form id="form-kontak" action="#" method="post">
-                <div class="field">
-                    <label for="nama">Nama lengkap</label>
-                    <input id="nama" name="nama" type="text" autocomplete="name" required minlength="3" />
-                </div>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="nama">Nama lengkap</label>
+                        <input id="nama" name="nama" type="text" autocomplete="name" required minlength="3" />
+                    </div>
 
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required />
-                </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required />
+                    </div>
 
-                <div class="field">
-                    <label for="telepon">Nomor WhatsApp <span class="opsional">(opsional)</span></label>
-                    <input id="telepon" name="telepon" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" />
-                </div>
+                    <div class="field">
+                        <label for="telepon">Nomor WhatsApp <span class="opsional">(opsional)</span></label>
+                        <input id="telepon" name="telepon" type="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" />
+                    </div>
 
-                <div class="field">
-                    <label for="paket">Paket yang diminati</label>
-                    <select id="paket" name="paket" required>
-                        <option value="">Pilih paket</option>
-                        <option value="harian">Nasi kotak harian</option>
-                        <option value="prasmanan">Paket prasmanan</option>
-                        <option value="tester">Paket tester</option>
-                    </select>
+                    <div class="field">
+                        <label for="paket">Paket yang diminati</label>
+                        <select id="paket" name="paket" required>
+                            <option value="">Pilih paket</option>
+                            <option value="harian">Nasi kotak harian</option>
+                            <option value="prasmanan">Paket prasmanan</option>
+                            <option value="tester">Paket tester</option>
+                        </select>
+                    </div>
                 </div>
 
                 <fieldset>
                     <legend>Topik pertanyaan</legend>
-                    <label><input type="radio" name="topik" value="produk" required /> Informasi produk</label>
-                    <label><input type="radio" name="topik" value="pesanan" /> Status pesanan</label>
-                    <label><input type="radio" name="topik" value="kerja-sama" /> Kerja sama</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="topik" value="produk" required /> Informasi produk</label>
+                        <label><input type="radio" name="topik" value="pesanan" /> Status pesanan</label>
+                        <label><input type="radio" name="topik" value="kerja-sama" /> Kerja sama</label>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Waktu terbaik untuk dihubungi</legend>
-                    <label><input type="radio" name="waktu" value="pagi" required /> Pagi</label>
-                    <label><input type="radio" name="waktu" value="siang" /> Siang</label>
-                    <label><input type="radio" name="waktu" value="sore" /> Sore</label>
+                    <div class="option-group">
+                        <label><input type="radio" name="waktu" value="pagi" required /> Pagi</label>
+                        <label><input type="radio" name="waktu" value="siang" /> Siang</label>
+                        <label><input type="radio" name="waktu" value="sore" /> Sore</label>
+                    </div>
                 </fieldset>
 
                 <div class="field">
@@ -70,7 +76,10 @@
                     <textarea id="pesan" name="pesan" rows="5" required minlength="10"></textarea>
                 </div>
 
-                <button type="submit">Tampilkan Preview</button>
+                <div class="form-actions">
+                    <button type="submit">Tampilkan Preview</button>
+                    <a href="https://wa.me/6281234567890">Atau hubungi lewat WhatsApp</a>
+                </div>
             </form>
 
             <section aria-labelledby="preview-title">

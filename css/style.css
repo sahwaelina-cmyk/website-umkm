@@ -412,3 +412,37 @@ section:has(h2) {
   gap: var(--space-2);
   margin-top: auto;
 }
+
+/* ===== P06 Tugas Mandiri: halaman kontak ===== */
+
+/* Field form: dua kolom (Nama, Email / WhatsApp, Paket) */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.form-grid .field {
+  margin-bottom: 0;
+}
+
+/* Pilihan radio: berjajar satu baris, turun ke baris baru kalau sempit */
+.option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+/* Tombol form dan tautan WhatsApp: sejajar satu baris */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Label opsional pada nomor WhatsApp */
+.opsional {
+  color: var(--color-muted);
+  font-weight: 400;
+}
