@@ -332,3 +332,83 @@ section:has(h2) {
   background: var(--color-primary);
   border-radius: var(--radius-lg);
 }
+
+/* ===== P06: Grid ===== */
+
+/* Hero: dua kolom, teks di kiri dan gambar di kanan */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+.hero-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* Katalog produk: tiga kolom sama lebar */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* Galeri: dua kolom sama lebar */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* Jarak antar card sudah diatur gap, jadi margin card dinolkan */
+.product-grid .product-card,
+.gallery-grid .media-card {
+  margin-block: 0;
+}
+
+/* ===== P06: Flexbox ===== */
+
+/* Navigasi: brand di kiri, daftar menu di kanan */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.brand { margin-bottom: 0; }
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.nav li { margin: 0; }
+
+/* Card produk: isi disusun vertikal */
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Badge menempel di pojok kanan atas card */
+.product-badge {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  padding: 0.25rem var(--space-2);
+  color: var(--color-primary-strong);
+  font-size: 0.875rem;
+  font-weight: 800;
+  background: #fef3c7;
+  border-radius: 999px;
+}
+
+/* Tombol aksi: sejajar satu baris, turun ke bawah card */
+.card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+}
