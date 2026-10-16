@@ -333,12 +333,12 @@ section:has(h2) {
   border-radius: var(--radius-lg);
 }
 
-/* ===== P06: Grid ===== */
+/* ===== P06 + P07: baseline mobile (satu kolom) ===== */
 
-/* Hero: dua kolom, teks di kiri dan gambar di kanan */
+/* Hero: satu kolom pada layar sempit */
 .hero {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: var(--space-4);
   align-items: center;
 }
@@ -347,17 +347,11 @@ section:has(h2) {
   border-radius: var(--radius-md);
 }
 
-/* Katalog produk: tiga kolom sama lebar */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-
-/* Galeri: dua kolom sama lebar */
+/* Katalog dan galeri: satu kolom pada layar sempit */
+.product-grid,
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
@@ -367,22 +361,23 @@ section:has(h2) {
   margin-block: 0;
 }
 
-/* ===== P06: Flexbox ===== */
-
-/* Navigasi: brand di kiri, daftar menu di kanan */
+/* Navigasi: tersusun ke bawah pada layar sempit */
 .nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
 }
 .brand { margin-bottom: 0; }
 .nav ul {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
 .nav li { margin: 0; }
+
+/* ===== P06: Flexbox ===== */
 
 /* Card produk: isi disusun vertikal */
 .product-card {
@@ -415,10 +410,10 @@ section:has(h2) {
 
 /* ===== P06 Tugas Mandiri: halaman kontak ===== */
 
-/* Field form: dua kolom (Nama, Email / WhatsApp, Paket) */
+/* Field form: satu kolom pada layar sempit, dua kolom mulai 42rem */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-3) var(--space-4);
   margin-bottom: var(--space-3);
 }
@@ -445,4 +440,34 @@ section:has(h2) {
 .opsional {
   color: var(--color-muted);
   font-weight: 400;
+}
+
+/* ===== P07: tabel berwrapper ===== */
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.table-scroll:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.table-scroll table {
+  min-width: 40rem;
+}
+
+/* ===== P07: breakpoint berbasis konten (letakkan di paling akhir) ===== */
+@media (min-width: 42rem) {
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav ul { flex-direction: row; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 48rem) {
+  .hero { grid-template-columns: 1.2fr 0.8fr; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 60rem) {
+  .nav { flex-direction: row; align-items: center; justify-content: space-between; }
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
