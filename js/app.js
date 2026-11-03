@@ -11,16 +11,19 @@ const produkUmkm = [
 
 console.table(produkUmkm);
 
-const formatRupiah = new Intl.NumberFormat("id-ID", {
-  style: "currency",
-  currency: "IDR",
-  maximumFractionDigits: 0,
-});
+//function pengubah angka menjadi teks rupiah
+function formatRupiah(nilai) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(nilai);
+}
 
-console.log(formatRupiah.format(produkUmkm[0].harga));
+console.log(formatRupiah(produkUmkm[0].harga));
 
 function statusStok(stok) {
-  if (stok === 0) {
+  if (stok <= 0) {
     return { label: "Habis", className: "empty" };
   }
 
@@ -30,6 +33,11 @@ function statusStok(stok) {
 
   return { label: "Tersedia", className: "" };
 }
+
+//tes tiga kemungkinan status stok
+console.log(statusStok(0));
+console.log(statusStok(3));
+console.log(statusStok(12));
 
 function labelKategori(kategori) {
   switch (kategori) {
@@ -46,43 +54,55 @@ function labelKategori(kategori) {
   }
 }
 
+//function pembuat kartu: input satu object produk, output teks HTML
+function buatKartuProduk(produk) {
+  const status = statusStok(produk.stok);
+  const kategori = labelKategori(produk.kategori);
+  const labelAksi = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
+  const badgeUnggulan = produk.unggulan
+    ? '<span class="stock-badge">Produk unggulan</span>'
+    : "";
+
+  return `
+    <article class="js-product-card">
+      <h3>${produk.nama}</h3>
+      <p>${kategori}</p>
+      <p class="price">${formatRupiah(produk.harga)}</p>
+      <span class="stock-badge ${status.className}">${status.label}</span>
+      ${badgeUnggulan}
+      <p>${labelAksi}</p>
+    </article>
+  `;
+}
+
+//tes sementara: lihat hasil HTML satu produk
+console.log(buatKartuProduk(produkUmkm[0]));
+
 function renderProduk() {
   const grid = document.querySelector("#produk-dinamis");
   const ringkasan = document.querySelector("#produk-ringkasan");
-
-  if (!grid || !ringkasan) {
+  const unggulan = document.querySelector("#produk-unggulan");
+  
+  if (!grid || !ringkasan || !unggulan) {
+    console.warn("Target render produk belum lengkap.");
     return;
   }
-
-  let jumlahTersedia = 0;
-  let markup = "";
-
-for (const produk of produkUmkm) {
-    const status = statusStok(produk.stok);
-    const kategori = labelKategori(produk.kategori);
-    const labelAksi = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
-    const badgeUnggulan = produk.unggulan 
-     ? '<span class="stock-badge">Produk unggulan</span>'
-     : "";
-
-    if (produk.stok > 0) {
-      jumlahTersedia = jumlahTersedia + 1;
-    }
-
-    markup = markup + `
-      <article class="js-product-card">
-        <h3>${produk.nama}</h3>
-        <p>${kategori}</p>
-        <p class="price">${formatRupiah.format(produk.harga)}</p>
-        <span class="stock-badge ${status.className}">${status.label}</span>
-        ${badgeUnggulan}
-        <p>${labelAksi}</p>
-      </article>
-    `;
-  }
-
-  grid.innerHTML = markup;
-  ringkasan.textContent = `${jumlahTersedia} produk tersedia dari ${produkUmkm.length} data.`;
+  
+  //array methods: filter, find, dan map
+  const produkTersedia = produkUmkm.filter((produk) => produk.stok > 0);
+  const produkUnggulan = produkUmkm.find((produk) => produk.unggulan === true);
+  const markupProduk = produkTersedia.map(buatKartuProduk).join("");
+  
+  //forEach dipakai untuk debugging, bukan membuat HTML baru
+  produkUmkm.forEach((produk) => {
+    console.log("Debug produk:", produk.nama, "stok:", produk.stok);
+  });
+  
+  grid.innerHTML = markupProduk;
+  ringkasan.textContent = `${produkTersedia.length} produk tersedia dari ${produkUmkm.length} data.`;
+  unggulan.textContent = produkUnggulan 
+    ? `Produk unggulan: ${produkUnggulan.nama}` 
+    : "Belum ada produk unggulan.";
 }
 
 document.addEventListener("DOMContentLoaded", renderProduk);
