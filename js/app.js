@@ -78,31 +78,123 @@ function buatKartuProduk(produk) {
 //tes sementara: lihat hasil HTML satu produk
 console.log(buatKartuProduk(produkUmkm[0]));
 
-function renderProduk() {
-  const grid = document.querySelector("#produk-dinamis");
-  const ringkasan = document.querySelector("#produk-ringkasan");
+const produkGrid = document.querySelector("#produk-dinamis");
+const produkStatus = document.querySelector("#produk-ringkasan");
+const tombolFilter = document.querySelectorAll("[data-filter]");
+
+console.log("Target grid:", produkGrid);
+console.log("Target status:", produkStatus);
+console.log("Jumlah tombol filter:", tombolFilter.length);
+
+function buatElemenProduk(produk) {
+  const card = document.createElement("article");
+  card.classList.add("js-product-card");
+
+  const title = document.createElement("h3");
+  title.textContent = produk.nama;
+
+  const category = document.createElement("p");
+  category.textContent = labelKategori(produk.kategori);
+
+  const price = document.createElement("p");
+  price.classList.add("price");
+  price.textContent = formatRupiah(produk.harga);
+
+  const stock = document.createElement("span");
+  const status = statusStok(produk.stok);
+  stock.classList.add("stock-badge");
+  if (status.className) {
+    stock.classList.add(status.className);
+  }
+  stock.textContent = status.label;
+
+  const aksi = document.createElement("p");
+  aksi.textContent = produk.stok > 0 ? "Siap dipesan" : "Hubungi admin";
+
+  card.append(title, category, price, stock);
+
+  if (produk.unggulan) {
+    const badgeUnggulan = document.createElement("span");
+    badgeUnggulan.classList.add("stock-badge");
+    badgeUnggulan.textContent = "Produk unggulan";
+    card.append(badgeUnggulan);
+  }
+  
+  card.append(aksi);
+
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.textContent = "Sembunyikan";
+  removeButton.classList.add("ghost-button");
+
+  removeButton.addEventListener("click", () => {
+    card.remove();
+    produkStatus.textContent = "Satu kartu disembunyikan dari tampilan sementara.";
+  });
+
+  card.append(removeButton);
+  return card;
+}
+
+console.log("Tes elemen:", buatElemenProduk(produkUmkm[0]));
+
+function buatEmptyState(kategori) {
+  const empty = document.createElement("p");
+  empty.classList.add("empty-state");
+  empty.textContent = `Belum ada produk pada kategori ${kategori}.`;
+  return empty;
+}
+
+function renderProduk(kategoriAktif = "Semua") {
   const unggulan = document.querySelector("#produk-unggulan");
   
-  if (!grid || !ringkasan || !unggulan) {
+  if (!produkGrid || !produkStatus || !unggulan) {
     console.warn("Target render produk belum lengkap.");
     return;
   }
   
-  //array methods: filter, find, dan map
-  const produkTersedia = produkUmkm.filter((produk) => produk.stok > 0);
+  console.log("Render dipanggil, semua target ditemukan.");
+  
   const produkUnggulan = produkUmkm.find((produk) => produk.unggulan === true);
-  const markupProduk = produkTersedia.map(buatKartuProduk).join("");
-  
-  //forEach dipakai untuk debugging, bukan membuat HTML baru
-  produkUmkm.forEach((produk) => {
-    console.log("Debug produk:", produk.nama, "stok:", produk.stok);
-  });
-  
-  grid.innerHTML = markupProduk;
-  ringkasan.textContent = `${produkTersedia.length} produk tersedia dari ${produkUmkm.length} data.`;
+
   unggulan.textContent = produkUnggulan 
     ? `Produk unggulan: ${produkUnggulan.nama}` 
     : "Belum ada produk unggulan.";
+
+  const produkTampil = kategoriAktif === "Semua"
+    ? produkUmkm
+    : produkUmkm.filter((produk) => produk.kategori === kategoriAktif);
+
+  produkGrid.replaceChildren();
+
+  if (produkTampil.length === 0) {
+    produkGrid.append(buatEmptyState(kategoriAktif));
+    produkStatus.textContent = "0 produk ditemukan.";
+    return;
+  }
+
+  produkTampil.forEach((produk) => {
+    produkGrid.append(buatElemenProduk(produk));
+  });
+
+  produkStatus.textContent = `${produkTampil.length} produk ditampilkan.`;
 }
 
-document.addEventListener("DOMContentLoaded", renderProduk);
+tombolFilter.forEach((tombol) => {
+tombol.addEventListener("click", (event) => {
+  
+  const tombolAktif = event.currentTarget;
+  const kategori = tombolAktif.dataset.filter;
+  
+  console.log("Filter diklik:", kategori);
+  
+  tombolFilter.forEach((item) => item.classList.remove("is-active"));
+  tombolAktif.classList.add("is-active");
+  
+  renderProduk(kategori);
+});
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderProduk();
+});
