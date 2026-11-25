@@ -1,0 +1,38 @@
+[
+  {
+    "id": "nasi-kotak-komplit",
+    "nama": "Nasi Kotak Komplit",
+    "kategori": "Nasi Kotak",
+    "harga": 20000,
+    "stok": 12,
+    "unggulan": true,
+    "deskripsi": "Menu lengkap dengan lauk dan sayur, cocok untuk acara kantor."
+  },
+  {
+    "id": "paket-prasmanan",
+    "nama": "Paket Prasmanan",
+    "kategori": "Prasmanan",
+    "harga": 25000,
+    "stok": 4,
+    "unggulan": false,
+    "deskripsi": "Cocok untuk hajatan dan arisan, minimal pemesanan 20 porsi."
+  },
+  {
+    "id": "paket-jajan-pasar",
+    "nama": "Paket Jajan Pasar",
+    "kategori": "Jajan Pasar",
+    "harga": 30000,
+    "stok": 0,
+    "unggulan": false,
+    "deskripsi": "Satu dus berisi 10 jajan pasar untuk suguhan pertemuan santai."
+  },
+  {
+    "id": "paket-tester",
+    "nama": "Paket Tester",
+    "kategori": "Tester",
+    "harga": 15000,
+    "stok": 8,
+    "unggulan": true,
+    "deskripsi": "Paket kecil untuk mencoba menu Dapur Mak Win bagi pelanggan baru."
+  }
+]

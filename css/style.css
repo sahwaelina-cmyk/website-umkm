@@ -579,3 +579,11 @@ section:has(h2) {
 .form-feedback.success {
   color: #166534;
 }
+
+.catalog-status.loading { color: #8a6d00; }
+.catalog-status.success { color: #1b6e3c; }
+.catalog-status.empty { color: #555555; }
+.catalog-status.error { color: #b3261e; font-weight: 600; }
+
+.product-stock.habis { color: #b3261e; font-weight: 600; }
+.empty-state { padding: 1rem; text-align: center; }
